@@ -6,7 +6,6 @@ function Input(props) {
         value={props.value}
         onChange={props.handleTaskChange}
         type="text"
-        className="new-task"
       />
     </form>
   );

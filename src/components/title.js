@@ -1,7 +1,7 @@
 import React from "react";
 function Title() {
   return (
-    <h1 className="title">
+    <h1>
       To do list{" "}
       <span aria-label="emoji" role="img">
         🔥
