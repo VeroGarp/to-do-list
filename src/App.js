@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       newTask: "",
-      tasks: []
+      incomplete: [],
+      done: []
     };
   }
 
@@ -24,8 +25,16 @@ class App extends Component {
         ></Input>
 
         <TaskList
-          tasks={this.state.tasks}
+          tasks={this.state.incomplete}
           handleDelete={this.handleDelete}
+          handleDone={this.handleDone}
+        ></TaskList>
+        <h2>Done</h2>
+        <TaskList
+          tasks={this.state.done}
+          handleDelete={this.handleDelete}
+          handleDone={this.handleDone}
+          done
         ></TaskList>
       </Layout>
     );
@@ -36,20 +45,31 @@ class App extends Component {
       newTask: event.target.value
     });
   };
+
   handleSubmit = event => {
     event.preventDefault();
-    let newTasks = this.state.tasks;
+    let newTasks = this.state.incomplete;
     newTasks.push(this.state.newTask);
     this.setState({
       newTask: "",
-      tasks: newTasks
+      incomplete: newTasks
     });
   };
+
   handleDelete = id => {
-    let newTasks = this.state.tasks;
+    let newTasks = this.state.incomplete;
     newTasks.splice(id, 1);
     this.setState({
-      tasks: newTasks
+      incomplete: newTasks
+    });
+  };
+
+  handleDone = id => {
+    let newTasks = this.state.incomplete;
+    let completed = newTasks.splice(id, 1);
+    this.setState({
+      tasks: newTasks,
+      done: [...this.state.done, ...completed]
     });
   };
 }

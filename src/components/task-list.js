@@ -9,7 +9,9 @@ function TaskList(props) {
           key={id}
           id={id}
           handleDelete={props.handleDelete}
+          handleDone={props.handleDone}
           value={task}
+          done={props.done}
         ></Task>
       ))}
     </Fragment>
